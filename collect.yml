@@ -1,0 +1,45 @@
+name: collect Subscriptions
+
+on:
+  schedule:
+    - cron: '*/45 * * * *'
+  push:
+    branches:
+      - main
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run merge script
+        run: python script.py
+
+      - name: Display subx.txt
+        run: cat subx.txt
+
+      - name: Ensure clean working directory
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git stash --include-untracked
+
+      - name: Commit and push changes
+        run: |
+          git stash pop
+          git add combined_subscription.txt
+          git commit -m 'Update combined subscription' || echo "No changes to commit"
+          git pull --rebase origin main
+          git push
