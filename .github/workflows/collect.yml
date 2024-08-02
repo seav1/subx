@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Run merge script
+      - name: Run collect script
         run: python collect.py
 
       - name: Display subx.txt
