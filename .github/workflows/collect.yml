@@ -24,7 +24,7 @@ jobs:
         run: pip install requests
 
       - name: Run merge script
-        run: python subx.py
+        run: python collect.py
 
       - name: Display subx.txt
         run: cat subx.txt
