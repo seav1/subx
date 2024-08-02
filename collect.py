@@ -80,7 +80,7 @@ def main():
     combined_nodes = replaced_trojan_content.splitlines() + encoded_vmess_nodes
 
     # Write combined nodes to file
-    with open('combined_subscription.txt', 'w') as f:
+    with open('subx.txt', 'w') as f:
         for node in combined_nodes:
             f.write(node + '\n')
 
