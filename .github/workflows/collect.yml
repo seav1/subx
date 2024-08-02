@@ -24,7 +24,7 @@ jobs:
         run: pip install requests
 
       - name: Run merge script
-        run: python script.py
+        run: python subx.py
 
       - name: Display subx.txt
         run: cat subx.txt
@@ -39,7 +39,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git stash pop
-          git add combined_subscription.txt
+          git add subx.txt
           git commit -m 'Update combined subscription' || echo "No changes to commit"
           git pull --rebase origin main
           git push
