@@ -3,6 +3,8 @@ name: collect Subscriptions
 on:
   schedule:
     - cron: '*/45 * * * *'
+  watch:
+    types: started
   push:
     branches:
       - main
